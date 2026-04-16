@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RECIOTEC — Data Acquisition & Test Instrumentation for Defense, Aerospace & Space</title>
+<meta name="description" content="Exclusive Israeli distributor of mission-critical data acquisition, ARINC-818 video, and test measurement systems for aerospace, defense, and space programs.">
+<meta name="theme-color" content="#FF6633">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e1117;
+  --charcoal: #1f2329;
+  --slate: #4b5059;
+  --mute: #7d8591;
+  --line: #e1e3e8;
+  --line-strong: #c9ced6;
+  --soft: #eef0f3;
+  --paper: #ffffff;
+  --bg: #f6f7f9;
+  --accent: #ff6633;
+  --accent-deep: #d84e1f;
+  --accent-soft: #fff0ea;
+  --ok: #18a058;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+::selection { background: var(--accent); color: var(--paper); }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+/* ═══ Eyebrow ═══ */
+.eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+
+/* ═══ Top bar ═══ */
+.topbar {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.topbar .wrap {
+  padding: 9px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 24px;
+}
+.topbar .left, .topbar .right {
+  display: flex; align-items: center; gap: 18px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.topbar .left b { color: var(--paper); font-weight: 500; }
+.topbar .dot { color: rgba(255, 255, 255, 0.25); }
+.topbar a { color: rgba(255, 255, 255, 0.8); transition: color 0.2s; }
+.topbar a:hover { color: var(--accent); }
+.topbar .live { display: inline-flex; align-items: center; gap: 8px; }
+.topbar .live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 6px var(--ok);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* ═══ Navigation ═══ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(246, 247, 249, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 40px;
+  height: 76px;
+}
+.nav-logo { display: flex; align-items: center; gap: 14px; }
+.nav-logo img { height: 34px; width: auto; }
+.nav-logo .divide { width: 1px; height: 22px; background: var(--line-strong); }
+.nav-logo .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--mute);
+  text-transform: uppercase;
+  line-height: 1.35;
+}
+.nav-logo .sub b { color: var(--ink); font-weight: 500; }
+
+.nav-links {
+  display: flex; gap: 2px; justify-content: center; list-style: none;
+}
+.nav-links a {
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12.5px; font-weight: 600;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 11px 18px;
+  border-radius: 3px;
+  transition: background 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-cta:hover { background: var(--charcoal); }
+.nav-cta .arrow { display: inline-block; transition: transform 0.2s; }
+.nav-cta:hover .arrow { transform: translateX(2px); }
+
+/* ═══ Hero ═══ */
+.hero {
+  position: relative;
+  padding: 72px 0 96px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-eyebrow { margin-bottom: 28px; }
+
+.hero h1 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 5.2vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  max-width: 14ch;
+}
+.hero h1 .accent { color: var(--accent); }
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--slate);
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+.hero-sub b { color: var(--ink); font-weight: 600; }
+
+.hero-cta-row {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.btn-primary, .btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13.5px; font-weight: 600;
+  padding: 14px 22px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+}
+.btn-primary { background: var(--accent); color: var(--paper); }
+.btn-primary:hover { background: var(--accent-deep); }
+.btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+.btn-secondary:hover { border-color: var(--ink); }
+.btn-primary .arrow, .btn-secondary .arrow { transition: transform 0.2s; }
+.btn-primary:hover .arrow, .btn-secondary:hover .arrow { transform: translateX(2px); }
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  max-width: 620px;
+}
+.hero-meta .item .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--mute);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hero-meta .item .v {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.hero-meta .item .v .unit {
+  font-size: 14px; color: var(--mute); font-weight: 500; margin-left: 2px;
+}
+
+/* Hero figure */
+.hero-figure {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  max-height: 620px;
+  background: var(--ink);
+  box-shadow: 0 2px 4px rgba(14, 17, 23, 0.06), 0 0 0 1px var(--line);
+}
+.hero-figure img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+.hero-figure::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(14, 17, 23, 0) 45%, rgba(14, 17, 23, 0.55) 100%);
+  pointer-events: none;
+}
+
+.hero-fig-tag {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: rgba(14, 17, 23, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--paper);
+  padding: 7px 11px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+.hero-fig-tag .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.hero-fig-card {
+  position: absolute;
+  bottom: 16px; left: 16px; right: 16px;
+  background: rgba(14, 17, 23, 0.68);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 18px;
+  color: var(--paper);
+  z-index: 2;
+}
+.hero-fig-card .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.hero-fig-card .v {
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+.hero-fig-card .v .accent { color: var(--accent); }
+.hero-fig-card .stats {
+  display: flex; gap: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.hero-fig-card .stat { display: grid; gap: 2px; text-align: right; }
+.hero-fig-card .stat .sk {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.hero-fig-card .stat .sv { color: var(--paper); font-weight: 500; }
+
+/* ═══ Credibility strip ═══ */
+.trust-strip {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 0;
+  border-bottom: 1px solid var(--charcoal);
+}
+.trust-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 32px; flex-wrap: wrap;
+}
+.trust-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.trust-head b { color: var(--accent); font-weight: 500; }
+.trust-items {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  align-items: center;
+}
+.trust-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.trust-item::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* ═══ Section ═══ */
+.section {
+  padding: 112px 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.section.paper { background: var(--paper); }
+.section.dark { background: var(--ink); color: var(--paper); border-top: none; }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+.section-head .eyebrow { margin-bottom: 18px; }
+.section-head h2 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.section-head h2 .accent { color: var(--accent); }
+.section-head .desc {
+  font-size: 16px;
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 560px;
+}
+.section.dark .section-head h2 { color: var(--paper); }
+.section.dark .section-head .desc { color: rgba(255, 255, 255, 0.7); }
+
+/* ═══ Partner cards ═══ */
+.partners {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.partner-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  display: flex; flex-direction: column;
+}
+.partner-card:hover {
+  border-color: var(--accent);
+}
+.partner-media {
+  position: relative;
+  aspect-ratio: 16/10;
+  background: var(--ink);
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.partner-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.partner-media.contain-dark img {
+  object-fit: contain;
+  padding: 24px;
+}
+.partner-media.contain-light {
+  background: var(--soft);
+  border-bottom-color: var(--line);
+}
+.partner-media.contain-light img {
+  object-fit: contain;
+  padding: 18px;
+}
+.partner-media .tag {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: rgba(14, 17, 23, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--paper);
+  padding: 5px 9px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.partner-media .num {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(14, 17, 23, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  z-index: 2;
+}
+.partner-media.contain-light .tag,
+.partner-media.contain-light .num {
+  background: var(--ink); border: none; color: var(--paper);
+}
+
+.partner-body {
+  padding: 28px 28px 28px;
+  flex-grow: 1;
+  display: flex; flex-direction: column;
+}
+.partner-body h3 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.partner-body .sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.partner-body p {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.partner-body .specs {
+  list-style: none;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  margin-bottom: 22px;
+  flex-grow: 1;
+}
+.partner-body .specs li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  padding: 8px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  border-bottom: 1px dashed var(--line);
+}
+.partner-body .specs li:last-child { border-bottom: none; }
+.partner-body .specs li .sk { color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase; }
+.partner-body .specs li .sv { color: var(--ink); font-weight: 500; }
+.partner-body .link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: gap 0.2s;
+}
+.partner-body .link:hover { gap: 12px; }
+
+/* ═══ Domains (image band) ═══ */
+.domains {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.domain {
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: 6px;
+  overflow: hidden;
+  display: block;
+  border: 1px solid var(--line);
+}
+.domain img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.domain.rocket img { object-position: 78% 50%; }
+.domain.satellite img { object-position: 75% 40%; }
+.domain.naval img { object-position: 78% 65%; }
+.domain::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(14, 17, 23, 0.15) 0%, rgba(14, 17, 23, 0.45) 50%, rgba(14, 17, 23, 0.88) 100%);
+  z-index: 1;
+}
+.domain-content {
+  position: absolute;
+  left: 24px; right: 24px; bottom: 24px;
+  z-index: 2;
+  color: var(--paper);
+}
+.domain-top {
+  position: absolute;
+  top: 20px; left: 24px; right: 24px;
+  z-index: 2;
+  display: flex; justify-content: space-between;
+  color: var(--paper);
+}
+.domain-tag {
+  background: rgba(14, 17, 23, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.domain-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 5px 0;
+}
+.domain h4 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 2.6vw, 36px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--paper);
+  margin-bottom: 12px;
+}
+.domain h4 .accent { color: var(--accent); }
+.domain p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+  max-width: 320px;
+  margin-bottom: 16px;
+}
+.domain .meta {
+  display: flex; gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+.domain .meta b { color: var(--accent); font-weight: 500; }
+
+/* ═══ Capabilities (protocols) ═══ */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cap {
+  background: var(--paper);
+  padding: 28px 22px;
+  transition: background 0.2s ease;
+  position: relative;
+}
+.cap:hover { background: var(--accent-soft); }
+.cap .cap-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.cap .cap-name {
+  font-size: 13px;
+  color: var(--charcoal);
+  line-height: 1.4;
+  font-weight: 500;
+}
+.cap .cap-meta {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+
+/* ═══ Compliance band ═══ */
+.compliance {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+.cbox {
+  background: var(--paper);
+  padding: 28px 24px;
+}
+.cbox .ck {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.cbox h5 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.cbox p {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+/* ═══ Customers ═══ */
+.customers {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.customers .cust {
+  padding: 42px 20px;
+  text-align: center;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  color: var(--paper);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.2s, color 0.2s;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 106px;
+  line-height: 1.2;
+}
+.customers .cust:hover { background: rgba(255, 102, 51, 0.08); color: var(--accent); }
+.customers .cust:nth-child(6n) { border-right: none; }
+.customers .cust:nth-last-child(-n+6) { border-bottom: none; }
+
+.section.dark .section-footer {
+  margin-top: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ═══ About / Founder ═══ */
+.about {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-body h3 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 28px;
+  max-width: 26ch;
+  letter-spacing: -0.02em;
+}
+.about-body h3 .accent { color: var(--accent); }
+.about-body p {
+  font-size: 15.5px;
+  color: var(--slate);
+  line-height: 1.75;
+  margin-bottom: 18px;
+  max-width: 60ch;
+}
+.about-body p b { color: var(--ink); font-weight: 600; }
+
+.about-pillars {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pillar {
+  background: var(--paper);
+  padding: 24px;
+}
+.pillar .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pillar h4 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.pillar p {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Founder card */
+.founder-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 32px;
+  position: sticky;
+  top: 104px;
+}
+.founder-card .founder-head {
+  display: flex; align-items: center; gap: 18px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+.founder-avatar {
+  width: 64px; height: 64px;
+  border-radius: 4px;
+  background: var(--ink);
+  display: grid; place-items: center;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  border: 1px solid var(--charcoal);
+}
+.founder-head .name {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.founder-head .title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--mute);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.founder-card blockquote {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--charcoal);
+  padding-left: 18px;
+  border-left: 2px solid var(--accent);
+  margin-bottom: 24px;
+}
+.founder-card .stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 24px;
+}
+.founder-card .stats .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--mute);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.founder-card .stats .v {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.founder-card .stats .v .accent { color: var(--accent); }
+.founder-card a.lnk {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--accent);
+  transition: gap 0.2s;
+}
+.founder-card a.lnk:hover { gap: 12px; }
+
+/* ═══ Closer banner ═══ */
+.closer {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+.closer img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  z-index: 0;
+}
+.closer::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(14, 17, 23, 0.92) 0%, rgba(14, 17, 23, 0.65) 55%, rgba(14, 17, 23, 0.25) 100%);
+  z-index: 1;
+}
+.closer .wrap { position: relative; z-index: 2; padding: 88px 40px; }
+.closer .eyebrow { color: var(--accent); margin-bottom: 24px; }
+.closer h2 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(36px, 4.8vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  max-width: 18ch;
+  margin-bottom: 24px;
+}
+.closer h2 .accent { color: var(--accent); }
+.closer p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 520px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.closer .row { display: flex; gap: 12px; flex-wrap: wrap; }
+.closer .btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 14px 22px;
+  border-radius: 3px;
+  font-size: 13.5px; font-weight: 600;
+  transition: border 0.2s, color 0.2s;
+}
+.closer .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ═══ Contact ═══ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.contact-left h2 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.contact-left h2 .accent { color: var(--accent); }
+.contact-left p.lede {
+  font-size: 16px;
+  color: var(--slate);
+  max-width: 460px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.contact-details {
+  display: grid; gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.contact-details .field {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 20px;
+  align-items: baseline;
+}
+.contact-details .k {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.contact-details .v { font-size: 15px; color: var(--ink); font-weight: 500; }
+.contact-details .v a { color: var(--ink); border-bottom: 1px solid var(--line); transition: all 0.2s; }
+.contact-details .v a:hover { color: var(--accent); border-color: var(--accent); }
+.contact-details .v small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--mute);
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.contact-form {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 32px;
+}
+.contact-form .form-lead {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.contact-form .form-sub {
+  font-size: 13.5px;
+  color: var(--slate);
+  margin-bottom: 26px;
+}
+.contact-form label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--mute);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.contact-form .field { margin-bottom: 18px; }
+.contact-form input, .contact-form textarea, .contact-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Archivo', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: border 0.2s;
+}
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+  outline: none;
+  border-color: var(--ink);
+  background: var(--paper);
+}
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form button {
+  width: 100%;
+  padding: 14px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 3px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+}
+.contact-form button:hover { background: var(--accent); }
+.contact-form .note {
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+  text-align: center;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* ═══ Footer ═══ */
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 56px 0 24px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-brand img {
+  height: 28px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  margin-bottom: 18px;
+}
+.footer-brand p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  max-width: 320px;
+  margin-bottom: 16px;
+}
+.footer-brand .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+.footer-col h5 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.footer-col a, .footer-col p {
+  display: block;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13.5px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--accent); }
+.footer-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding-top: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.42);
+  text-transform: uppercase;
+}
+.footer-bottom .mid { text-align: center; color: var(--accent); }
+.footer-bottom .end { text-align: right; }
+
+/* ═══ Reveal animations ═══ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.d-1 { transition-delay: 0.06s; }
+.d-2 { transition-delay: 0.12s; }
+.d-3 { transition-delay: 0.18s; }
+.d-4 { transition-delay: 0.24s; }
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1100px) {
+  .wrap { padding: 0 28px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-figure { aspect-ratio: 16/10; max-height: 480px; }
+  .partners { grid-template-columns: 1fr 1fr; }
+  .capabilities-grid { grid-template-columns: repeat(3, 1fr); }
+  .compliance { grid-template-columns: repeat(2, 1fr); }
+  .customers { grid-template-columns: repeat(3, 1fr); }
+  .customers .cust:nth-child(6n) { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+  .customers .cust:nth-child(3n) { border-right: none; }
+  .domains { grid-template-columns: 1fr; }
+  .domain { aspect-ratio: 16/9; }
+  .domain.rocket img { object-position: 75% 50%; }
+  .domain.satellite img { object-position: 72% 40%; }
+  .domain.naval img { object-position: 72% 55%; }
+  .about { grid-template-columns: 1fr; gap: 48px; }
+  .founder-card { position: static; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .section-head { grid-template-columns: 1fr; gap: 24px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .trust-items { gap: 16px; }
+}
+@media (max-width: 720px) {
+  .wrap { padding: 0 20px; }
+  .topbar .right { display: none; }
+  .nav-links { display: none; }
+  .nav .wrap { grid-template-columns: auto 1fr; gap: 16px; height: 68px; }
+  .nav-logo .sub, .nav-logo .divide { display: none; }
+  .nav-cta { padding: 9px 14px; font-size: 12px; }
+  .hero { padding: 48px 0 72px; }
+  .hero-figure { aspect-ratio: 5/6; }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .partners { grid-template-columns: 1fr; }
+  .capabilities-grid { grid-template-columns: repeat(2, 1fr); }
+  .compliance { grid-template-columns: 1fr; }
+  .customers { grid-template-columns: repeat(2, 1fr); }
+  .customers .cust:nth-child(3n) { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+  .customers .cust:nth-child(2n) { border-right: none; }
+  .contact-details .field { grid-template-columns: 1fr; gap: 4px; }
+  .about-pillars { grid-template-columns: 1fr; }
+  .section { padding: 72px 0; }
+  .closer { min-height: 420px; }
+  .closer .wrap { padding: 64px 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { grid-template-columns: 1fr; text-align: center; gap: 8px; }
+  .footer-bottom .end, .footer-bottom .mid { text-align: center; }
+  .hero-fig-card { left: 10px; right: 10px; bottom: 10px; grid-template-columns: 1fr; gap: 10px; }
+  .hero-fig-card .stats { justify-content: flex-start; }
+  .hero-fig-card .stat { text-align: left; }
+  .trust-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="left">
+      <span class="live"><span class="live-dot"></span><b>Operating</b> · Hod Hasharon · ISR</span>
+      <span class="dot">|</span>
+      <span>32.1574°N · 34.8879°E</span>
+    </div>
+    <div class="right">
+      <a href="tel:+972507755521">+972 · 50 · 7755521</a>
+      <span class="dot">|</span>
+      <a href="mailto:erez.ram@reciotec.com">erez.ram@reciotec.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#top">
+      <img src="logo.png" alt="RECIOTEC">
+      <span class="divide"></span>
+      <span class="sub">Exclusive Israeli Distributor<br><b>Aerospace · Defense · Space</b></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#domains">Domains</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#customers">Programs</a></li>
+      <li><a href="#about">Company</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">
+      Request Brief <span class="arrow">→</span>
+    </a>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow eyebrow reveal">Exclusive Israeli Distributor · Est. 1996</div>
+        <h1 class="reveal d-1">
+          Mission-critical instrumentation for <span class="accent">defense</span> and aerospace programs.
+        </h1>
+        <p class="hero-sub reveal d-2">
+          RECIOTEC supplies <b>high-performance data acquisition, ARINC-818 video, and advanced test measurement systems</b> to Israel's defense primes, aerospace integrators, and space programs — specified at design-in, supported for the program lifetime.
+        </p>
+        <div class="hero-cta-row reveal d-3">
+          <a class="btn-primary" href="#contact">Request Brief <span class="arrow">→</span></a>
+          <a class="btn-secondary" href="#solutions">View Solutions <span class="arrow">→</span></a>
+        </div>
+        <div class="hero-meta reveal d-4">
+          <div class="item">
+            <div class="k">Operating</div>
+            <div class="v">30<span class="unit">yr</span></div>
+          </div>
+          <div class="item">
+            <div class="k">Protocols</div>
+            <div class="v">12</div>
+          </div>
+          <div class="item">
+            <div class="k">Partners</div>
+            <div class="v">3</div>
+          </div>
+          <div class="item">
+            <div class="k">Programs</div>
+            <div class="v">80+</div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="hero-figure reveal d-2">
+        <img src="images/aircraft-boeing.jpg" alt="Boeing 787 Dreamliner in flight above clouds">
+        <div class="hero-fig-tag"><span class="dot"></span> CAPTURE · Airborne</div>
+        <div class="hero-fig-card">
+          <div>
+            <div class="k">Program · Flight-Test Lab</div>
+            <div class="v">Boeing 787 · <span class="accent">1553B acquisition</span></div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="sk">Sync</div>
+              <div class="sv">IRIG-B</div>
+            </div>
+            <div class="stat">
+              <div class="sk">Rate</div>
+              <div class="sv">5.12 MSPS</div>
+            </div>
+            <div class="stat">
+              <div class="sk">BER</div>
+              <div class="sv">0.000%</div>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Trust / compliance strip -->
+<section class="trust-strip">
+  <div class="wrap trust-inner">
+    <div class="trust-head"><b>// Specified For</b> · Defense · Aerospace · Space</div>
+    <div class="trust-items">
+      <span class="trust-item">MIL-STD-810</span>
+      <span class="trust-item">DO-160 Ready</span>
+      <span class="trust-item">ITAR-Aware</span>
+      <span class="trust-item">NDA-Friendly</span>
+      <span class="trust-item">IRIG-B · PTP</span>
+      <span class="trust-item">Long-Horizon Support</span>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions / Partners -->
+<section class="section paper" id="solutions">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <div class="eyebrow">§ 01 · Solutions</div>
+        <h2 class="reveal">Three vendors. <span class="accent">One accountable desk.</span></h2>
+      </div>
+      <p class="desc reveal d-1">
+        RECIOTEC is the sole Israeli distributor for three focused vendors — selected for engineering depth, compliance pedigree, and long-horizon support. One point of contact through specification, integration, and sustainment.
+      </p>
+    </header>
+
+    <div class="partners">
+      <article class="partner-card reveal">
+        <div class="partner-media contain-dark">
+          <img src="images/uei-2.png" alt="UEI data acquisition systems — ground launch support chassis">
+          <span class="tag">Data Acquisition</span>
+          <span class="num">01 / 03</span>
+        </div>
+        <div class="partner-body">
+          <h3>UEI · United Electronic Industries</h3>
+          <div class="sub">High-Performance DAQ</div>
+          <p>Hosted and embedded DAQ platforms, rugged field loggers, and synchronized multi-bus capture — the working chassis of modern flight-test, HIL, and ground-segment installations.</p>
+          <ul class="specs">
+            <li><span class="sk">Channels</span><span class="sv">Up to 64</span></li>
+            <li><span class="sk">Storage</span><span class="sv">1 – 16 TB</span></li>
+            <li><span class="sk">Sync</span><span class="sv">IRIG-B · PTP</span></li>
+            <li><span class="sk">Op Temp</span><span class="sv">-40 / +71 °C</span></li>
+          </ul>
+          <a class="link" href="https://www.ueidaq.com/" target="_blank" rel="noopener">
+            UEIDAQ.COM <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="partner-card reveal d-1">
+        <div class="partner-media contain-light">
+          <img src="images/unigraf-1.png" alt="Unigraf UCD-400 and UCD-340 8K/4K video test instruments">
+          <span class="tag">Video Test</span>
+          <span class="num">02 / 03</span>
+        </div>
+        <div class="partner-body">
+          <h3>Unigraf</h3>
+          <div class="sub">DP · HDMI · USB-C · UltraHD</div>
+          <p>Ultra-HD capture and protocol analyzers for display and USB-C/DP pipelines — qualification-grade instruments for 4K / 8K signal paths in production, R&amp;D, and certification labs.</p>
+          <ul class="specs">
+            <li><span class="sk">Formats</span><span class="sv">DP · HDMI · USB-C</span></li>
+            <li><span class="sk">Capture</span><span class="sv">8K · 4K · HDR</span></li>
+            <li><span class="sk">Modes</span><span class="sv">TX · RX · Analyzer</span></li>
+            <li><span class="sk">Compliance</span><span class="sv">VESA / CTS</span></li>
+          </ul>
+          <a class="link" href="https://www.unigraf.fi/" target="_blank" rel="noopener">
+            UNIGRAF.FI <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="partner-card reveal d-2">
+        <div class="partner-media">
+          <img src="images/GoogleGeminiGeneratedImage(1).png" alt="Military transport aircraft in flight" style="object-position: 50% 45%;">
+          <span class="tag">ARINC-818 · Aircraft</span>
+          <span class="num">03 / 03</span>
+        </div>
+        <div class="partner-body">
+          <h3>Great River Technology</h3>
+          <div class="sub">ARINC-818 · Systems Integration</div>
+          <p>ARINC-818-compliant video and sensor networks for military and commercial aircraft — integrated systems, boards, and toolchains with real program pedigree.</p>
+          <ul class="specs">
+            <li><span class="sk">Standard</span><span class="sv">ARINC-818-2 / -3</span></li>
+            <li><span class="sk">Rates</span><span class="sv">Up to 21.4 Gbps</span></li>
+            <li><span class="sk">Platforms</span><span class="sv">Mil · Commercial</span></li>
+            <li><span class="sk">Delivery</span><span class="sv">Boards · Systems</span></li>
+          </ul>
+          <a class="link" href="https://www.greatrivertech.com/" target="_blank" rel="noopener">
+            GREATRIVERTECH.COM <span class="arrow">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Domains -->
+<section class="section" id="domains">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <div class="eyebrow">§ 02 · Domains</div>
+        <h2 class="reveal">Three regimes. <span class="accent">One discipline.</span></h2>
+      </div>
+      <p class="desc reveal d-1">
+        The instruments we distribute are specified, integrated, and sustained across Israel's full defense and aerospace envelope — airborne flight-test, space ground-segment and satellite AIT, and shipboard mission systems.
+      </p>
+    </header>
+
+    <div class="domains">
+      <article class="domain rocket reveal">
+        <img src="images/GeminiGeneratedImage(7).png" alt="Rocket launch — ground support">
+        <div class="domain-top">
+          <span class="domain-tag">Space · Launch</span>
+          <span class="domain-code">01 / 03</span>
+        </div>
+        <div class="domain-content">
+          <h4>Ground <span class="accent">launch support</span>.</h4>
+          <p>Pad telemetry, qualification rigs, and range instrumentation — multi-channel capture that stays synchronized through T-0 and ascent.</p>
+          <div class="meta">
+            <span><b>UEI</b> · DAQ</span>
+            <span><b>IRIG-B</b> sync</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="domain satellite reveal d-1">
+        <img src="images/GeminiGeneratedImage(8).png" alt="Satellite in orbit above Earth">
+        <div class="domain-top">
+          <span class="domain-tag">Space · Orbit</span>
+          <span class="domain-code">02 / 03</span>
+        </div>
+        <div class="domain-content">
+          <h4>Satellite <span class="accent">AIT</span> & ground-segment.</h4>
+          <p>Integration, test, and qualification for satellite programs — clean, auditable data from cleanroom through commissioning.</p>
+          <div class="meta">
+            <span><b>AFDX</b> · CAN-FD</span>
+            <span><b>Sub-µs</b> PTP</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="domain naval reveal d-2">
+        <img src="images/GeminiGeneratedImage(9).png" alt="Naval destroyer at sea">
+        <div class="domain-top">
+          <span class="domain-tag">Defense · Naval</span>
+          <span class="domain-code">03 / 03</span>
+        </div>
+        <div class="domain-content">
+          <h4>Shipboard <span class="accent">mission systems</span>.</h4>
+          <p>Hardened acquisition for naval platforms — shock-rated, EMI-tested, and engineered for the long operational cycle of defense programs.</p>
+          <div class="meta">
+            <span><b>1553B</b> · 429</span>
+            <span><b>MIL-STD</b>-810</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Capabilities -->
+<section class="section paper" id="capabilities">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <div class="eyebrow">§ 03 · Capabilities</div>
+        <h2 class="reveal">Every bus. <span class="accent">Covered.</span></h2>
+      </div>
+      <p class="desc reveal d-1">
+        Certified protocol support, working integrations, real-time decoding, and loss-less capture — the communication layers that every serious defense or aerospace program lives on.
+      </p>
+    </header>
+
+    <div class="capabilities-grid reveal">
+      <div class="cap">
+        <div class="cap-code">MIL-STD-1553</div>
+        <div class="cap-name">Military avionics bus · BC / RT / BM</div>
+        <div class="cap-meta">1 Mbps</div>
+      </div>
+      <div class="cap">
+        <div class="cap-code">ARINC-429</div>
+        <div class="cap-name">Commercial avionics communication</div>
+        <div class="cap-meta">12.5 · 100 kbps</div>
+      </div>
+      <div class="cap">
+        <div class="cap-code">CAN-BUS</div>
+        <div class="cap-name">Vehicle & platform network</div>
+        <div class="cap-meta">1 Mbps · FD 8 Mbps</div>
+      </div>
+      <div class="cap">
+        <div class="cap-code">ARINC-818</div>
+        <div class="cap-name">High-speed digital video</div>
+        <div class="cap-meta">Up to 21.4 Gbps</div>
+      </div>
+      <div class="cap">
+        <div class="cap-code">IEEE-1588</div>
+        <div class="cap-name">Precision time protocol</div>
+        <div class="cap-meta">Sub-µs sync</div>
+      </div>
+      <div class="cap">
+        <div class="cap-code">AFDX</div>
+        <div class="cap-name">Deterministic avionics ethernet</div>
+        <div class="cap-meta">100 Mbps full-dup</div>
+      </div>
+    </div>
+
+    <div class="compliance">
+      <div class="cbox">
+        <div class="ck">// Environmental</div>
+        <h5>MIL-STD-810 Ready</h5>
+        <p>Shock, vibration, temperature, and humidity envelopes for airborne, armored, and shipboard deployment.</p>
+      </div>
+      <div class="cbox">
+        <div class="ck">// Airborne</div>
+        <h5>DO-160 Aligned</h5>
+        <p>Partner instruments qualified or qualifiable against DO-160 environmental standards for certification paths.</p>
+      </div>
+      <div class="cbox">
+        <div class="ck">// Trade</div>
+        <h5>ITAR-Aware Export</h5>
+        <p>Export classification reviewed for every delivery — clear documentation for defense procurement and end-use.</p>
+      </div>
+      <div class="cbox">
+        <div class="ck">// Support</div>
+        <h5>15-Year Horizon</h5>
+        <p>Long-lifecycle commitments from all three partners — spares, firmware, and escalation for the duration of the program.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customers -->
+<section class="section dark" id="customers">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <div class="eyebrow">§ 04 · Programs</div>
+        <h2 class="reveal">Fielded <span class="accent">with</span>.</h2>
+      </div>
+      <p class="desc reveal d-1">
+        RECIOTEC supports leading Israeli and international programs across defense, aerospace, space, and electronics — a customer base rebuilt over three decades of delivery and sustainment.
+      </p>
+    </header>
+
+    <div class="customers reveal">
+      <div class="cust">Israel Aerospace Industries</div>
+      <div class="cust">SPACE IL</div>
+      <div class="cust">RADA</div>
+      <div class="cust">INTEL</div>
+      <div class="cust">APPLE</div>
+      <div class="cust">Kremer Electronics</div>
+    </div>
+
+    <div class="section-footer">
+      + Additional defense, aerospace, and electronics programs — under NDA
+    </div>
+  </div>
+</section>
+
+<!-- About / Founder -->
+<section class="section paper" id="about">
+  <div class="wrap">
+    <header class="section-head">
+      <div>
+        <div class="eyebrow">§ 05 · Company</div>
+        <h2 class="reveal">Israeli distributor. <span class="accent">Long-horizon support.</span></h2>
+      </div>
+      <p class="desc reveal d-1">
+        RECIOTEC is a privately held Israeli company, operating since 1996. We stay involved from initial project definition through design, integration, and the years afterward — when support is what actually defines a supplier.
+      </p>
+    </header>
+
+    <div class="about">
+      <div class="about-body reveal">
+        <h3>Selected partners, specified for the long run — and <span class="accent">standing behind what's fielded</span>.</h3>
+        <p>
+          RECIOTEC Ltd. was founded by <b>Erez Ram</b>, whose career in data acquisition and avionics instrumentation spans more than thirty years across Israeli and international markets. The company operates from Hod Hasharon as the <b>exclusive Israeli distributor</b> for three partners — UEI, Unigraf, and Great River Technology — representing them to the country's most demanding defense, aerospace, and space customers.
+        </p>
+        <p>
+          In practice: specification, selection, integration, and the unglamorous discipline of sustaining what was delivered — for program lifetimes, not quarters.
+        </p>
+
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="k">Strategy</div>
+            <h4>Specified at design-in.</h4>
+            <p>We join at project definition — not at the purchase order — so the instrument choice matches the program envelope.</p>
+          </div>
+          <div class="pillar">
+            <div class="k">Commitment</div>
+            <h4>Every working bus.</h4>
+            <p>MIL-STD-1553, ARINC-429, CAN, ARINC-818, IEEE-1588, AFDX — and the adjacent protocols that programs actually use.</p>
+          </div>
+          <div class="pillar">
+            <div class="k">Vision</div>
+            <h4>Known by sustainment.</h4>
+            <p>Leading supplier status is earned one call at a time, over decades. We aim to be reachable — and technical — when it counts.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="founder-card reveal d-1">
+        <div class="founder-head">
+          <div class="founder-avatar">ER</div>
+          <div>
+            <div class="name">Erez Ram</div>
+            <div class="title">Founder · CEO</div>
+          </div>
+        </div>
+        <blockquote>
+          "Our customers fly and field the hardware we instrument. Every decision about a channel, a connector, or a clock starts from that fact."
+        </blockquote>
+        <div class="stats">
+          <div><div class="k">Experience</div><div class="v"><span class="accent">30+</span> yr</div></div>
+          <div><div class="k">Base</div><div class="v">ISR</div></div>
+          <div><div class="k">Founded</div><div class="v">1996</div></div>
+          <div><div class="k">Focus</div><div class="v">DAQ · A/V</div></div>
+        </div>
+        <a class="lnk" href="https://www.linkedin.com/in/erezram/" target="_blank" rel="noopener">
+          LinkedIn · @erezram <span class="arrow">→</span>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Closer -->
+<section class="closer">
+  <img src="images/GeminiGeneratedImage(11).png" alt="C-17 military transport aircraft in flight" style="object-position: 50% 50%;">
+  <div class="wrap">
+    <div class="eyebrow">§ 06 · Engagement</div>
+    <h2>Specified in. <span class="accent">Fielded. Sustained.</span></h2>
+    <p>Whatever the platform — airborne, naval, orbital — we bring instruments that hold up, documentation that holds, and a phone that picks up.</p>
+    <div class="row">
+      <a class="btn-primary" href="#contact">Request Brief <span class="arrow">→</span></a>
+      <a class="btn-ghost" href="#solutions">View Solutions <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="eyebrow">§ 07 · Contact</div>
+        <h2 class="reveal">Bring us the <span class="accent">program brief</span>.</h2>
+        <p class="lede reveal d-1">
+          Whether you're specifying instrumentation for a new platform or standing behind a legacy rig, the desk in Hod Hasharon routes directly to Erez.
+        </p>
+
+        <div class="contact-details reveal d-2">
+          <div class="field">
+            <div class="k">Phone</div>
+            <div class="v"><a href="tel:+972507755521">+972 · 50 · 7755521</a></div>
+          </div>
+          <div class="field">
+            <div class="k">Fax</div>
+            <div class="v">+972 · 9 · 8668998</div>
+          </div>
+          <div class="field">
+            <div class="k">Email</div>
+            <div class="v"><a href="mailto:erez.ram@reciotec.com">erez.ram@reciotec.com</a></div>
+          </div>
+          <div class="field">
+            <div class="k">Address</div>
+            <div class="v">
+              Hod Hasharon · 4502557 · Israel
+              <small>32.1574°N · 34.8879°E</small>
+            </div>
+          </div>
+          <div class="field">
+            <div class="k">Hours</div>
+            <div class="v">Sun – Thu · 08:30 → 18:00 IDT</div>
+          </div>
+          <div class="field">
+            <div class="k">Handling</div>
+            <div class="v">NDA-friendly · ITAR-aware<small>Export classification provided on request</small></div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal d-1" action="https://formspree.io/f/xlgweeay" method="POST">
+        <div class="form-lead">Start a program brief.</div>
+        <p class="form-sub">Tell us about the platform and we'll respond within one business day.</p>
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Your full name" required>
+        </div>
+        <div class="field">
+          <label>Organization</label>
+          <input type="text" name="organization" placeholder="Program · Prime · Integrator">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@program.com" required>
+        </div>
+        <div class="field">
+          <label>Interest</label>
+          <select name="interest">
+            <option>UEI · Data Acquisition</option>
+            <option>Unigraf · Video Test</option>
+            <option>Great River · ARINC-818</option>
+            <option>Multi-vendor / Custom</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Message</label>
+          <textarea name="message" placeholder="Platform, protocols, timeline, environmental envelope…" required></textarea>
+        </div>
+        <button type="submit">Send Brief <span class="arrow">→</span></button>
+        <div class="note">NDA on request · Export-controlled content off-form</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.png" alt="RECIOTEC">
+        <p>Exclusive Israeli distributor of high-performance data acquisition, ARINC-818, and video test instruments for defense, aerospace, and space.</p>
+        <div class="meta">Hod Hasharon · ISR · Est. 1996</div>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <a href="#solutions">UEI · DAQ</a>
+        <a href="#solutions">Unigraf · Video Test</a>
+        <a href="#solutions">Great River · ARINC-818</a>
+        <a href="#capabilities">Protocol Support</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#about">About RECIOTEC</a>
+        <a href="#about">Founder</a>
+        <a href="#customers">Programs</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Reach</h5>
+        <a href="tel:+972507755521">+972 · 50 · 7755521</a>
+        <a href="mailto:erez.ram@reciotec.com">erez.ram@reciotec.com</a>
+        <a href="https://www.linkedin.com/in/erezram/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 1996 – 2026 · RECIOTEC Ltd. · All rights reserved.</div>
+      <div class="mid">Engineered for the mission.</div>
+      <div class="end">v2026.04 · Build 04821</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
+  setTimeout(() => document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible')), 60);
+})();
+
+// Active nav link
+(function() {
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      const top = s.getBoundingClientRect().top;
+      if (top <= 120) current = s.id;
+    });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+  });
+})();
+</script>
+</body>
+</html>
